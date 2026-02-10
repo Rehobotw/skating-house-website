@@ -13,8 +13,11 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(cors({origin: process.env.CORS_ORIGIN}));
 app.use(express.json({limit:"10kb"}));
-app.use(mongoSanitize());
+app.use(mongoSanitize({sanitizeReqQuery: false}));
 
+app.get('/', (req, res) => {
+  res.send('API is running 🚀');
+});
 
 // Routes
 app.use("/api/auth",require("./routes/auth"));
