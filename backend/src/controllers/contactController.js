@@ -1,8 +1,8 @@
-const ContactInfo=require("../models/ContactInfo");
+const { getContactInfo, updateContactInfo } = require("../services/contactService");
 
 exports.get=async(req,res,next)=>{
     try{
-        const data=await ContactInfo.findOne({});
+        const data=await getContactInfo();
         res.json(data||{});
     }catch(e){
         next(e);
@@ -11,7 +11,7 @@ exports.get=async(req,res,next)=>{
 
 exports.update=async(req,res,next)=>{
     try{
-        const updated=await ContactInfo.findOneAndUpdate({},req.body,{upsert:true,new:true});
+        const updated=await updateContactInfo(req.body);
         res.json(updated);
     }catch(e){
         next(e);

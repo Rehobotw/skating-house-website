@@ -1,8 +1,9 @@
-const Pricing=require("../models/Pricing");
+const { getActivePricing, updatePricing } = require("../services/pricingService");
 
 exports.getAll=async(req,res,next)=>{
     try{
-        res.json(await Pricing.find({active:true}));
+        const items = await getActivePricing();
+        res.json(items);
     }catch(e){
         next(e);
     }
@@ -11,7 +12,7 @@ exports.getAll=async(req,res,next)=>{
 exports.update=async(req,res,next)=>{
     try{
         const{id}=req.params;
-        const update=await Pricing.findByIdAndUpdate(id,req.body,{new:true});
+        const update=await updatePricing(id,req.body);
         res.json(update);
     }catch(e){
         next(e);

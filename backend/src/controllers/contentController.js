@@ -1,8 +1,8 @@
-const SiteContent=require("../models/SiteContent");
+const { getAllContent, updateSection: updateSectionService } = require("../services/contentService");
 
 exports.getAll=async(req,res,next)=>{
     try{
-        const items=await SiteContent.find({});
+        const items=await getAllContent();
         res.json(items);
     }catch(err){
         next(err);
@@ -13,11 +13,7 @@ exports.updateSection=async(req,res,next)=>{
     try{
         const {section}=req.params;
         const{content}=req.body;
-        const updated=await SiteContent.findOneAndUpdate(
-            {section},
-            {content,updatedAt:Date.now()},
-            {upsert:true, new:true}
-        );
+        const updated=await updateSectionService(section, content);
         res.json(updated);
     }catch(err){
         next(err);

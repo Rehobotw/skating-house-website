@@ -1,18 +1,16 @@
-const jwt=require("jsonwebtoken");
-const Admin=require("../models/Admin");
+const { loginAdmin } = require("../services/authService");
 
-exports.login=async(req,res,next)=>{
-    try{
-        const {email,password}=req.body;
-        const admin=await Admin.findOne({email});
+exports.login = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+        const result = await loginAdmin(email, password);
 
-        if(!admin) 
-            return res.status(401).json({error:"Invalid credentials"});
-        
-        const token=jwt.sign({id:admin._id},process.env.JWT_SECRET,{expiresIn:"8h"});
-        res.json({token});
-    }
-    catch(err){
+        if (!result) {
+            return res.status(401).json({ error: "Invalid credentials" });
+        }
+
+        res.json(result);
+    } catch (err) {
         next(err);
-    }   
+    }
 };
