@@ -7,9 +7,9 @@ const ContactInfoSchema=new mongoose.Schema({
         telegram:String
    },
    contactAddress:{
-        phone:{type:String},
-        address:{type:String},
-        googleMapLink:{type:String}
+        phone:String,
+        address:String,
+        googleMapLink:String
    }  
 },{timestamps:true});
 

@@ -25,7 +25,7 @@ const pricingSeed = {
 // ];
 const contactInfoSeed = {
 	socialLinks:{ facebook: "facebook.com", tiktok:"super_skate_hawassa" ,telegram:"telegram.com"},
-	ContactAdress:{ phone: "+251 91234 5678 99", address:"Hayk BLDG. 5th Floor, Hawassa, Ethiopia" ,googleMapLink:"telegram"},
+	contactAddress:{ phone: "+251 91234 5678 99", address:"Hayk BLDG. 5th Floor, Hawassa, Ethiopia" ,googleMapLink:"telegram"},
 };
 const footerSeed = {
 	socialLinks:{ facebook: "facebook.com", tiktok:"super_skate_hawassa" ,telegram:"telegram.com"},

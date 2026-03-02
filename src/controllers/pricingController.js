@@ -11,9 +11,9 @@ exports.getAll=async(req,res,next)=>{
 
 exports.update=async(req,res,next)=>{
     try{
-        const{id}=req.params;
-        const update=await updatePricing(id,req.body);
-        res.json(update);
+        // const{id}=req.params;
+        const updated=await updatePricing(req.body);
+        res.json(updated);
     }catch(e){
         next(e);
     }
