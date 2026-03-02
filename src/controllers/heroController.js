@@ -11,9 +11,8 @@ exports.getAll=async(req,res,next)=>{
 
 exports.updateSection=async(req,res,next)=>{
     try{
-        const {title}=req.params;
-        const{content}=req.body;
-        const updated=await updateHeroService(title, content);
+        const { title,content } = req.body;
+        const updated = await updateHeroService(title,content);
         res.json(updated);
     }catch(err){
         next(err);

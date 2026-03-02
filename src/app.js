@@ -31,9 +31,9 @@ app.use("/api/hero", require("./routes/hero"));
 app.use("/api/about", require("./routes/about"));
 app.use("/api/session", require("./routes/session"));
 app.use("/api/pricing", require("./routes/pricing"));
-// app.use("/api/gallery", require("./routes/gallery"));
+app.use("/api/gallery", require("./routes/gallery"));
 app.use("/api/contact", require("./routes/contact"));
-app.use("/api/footer",require("./routes/footer"))
+app.use("/api/footer", require("./routes/footer"));
 
 // Central error handler
 app.use(errorHandler);

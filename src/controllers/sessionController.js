@@ -11,9 +11,8 @@ exports.getAll=async(req,res,next)=>{
 
 exports.update=async(req,res,next)=>{
     try{
-        const {title}=req.params;
-        const{titles,content}=req.body;
-        const updated=await updateSection(title, titles,content);
+        const {title, content } = req.body;
+        const updated = await updateSection(title,content);
         res.json(updated);
     }catch(err){
         next(err);

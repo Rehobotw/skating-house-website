@@ -1,13 +1,13 @@
-const footer = require("../models/Footer");
+const Footer = require("../models/Footer");
 
-const getAllContent = () => footer.find({});
+// Return the single footer document (or null if none exists yet)
+const getAllContent = () => Footer.findOne({});
 
-const updateSection = (socialLinks) =>
-    footerContent.findOneAndUpdate(
-        { socialLinks, updatedAt: Date.now() },
-        { upsert: true, new: true }
-    );
+// Update footer content in-place (create once, then always update that same doc)
+const updateFooterService = (data) =>
+    Footer.findOneAndUpdate({}, data, { upsert: true, new: true });
+
 module.exports = {
     getAllContent,
-    updateSection,
+    updateFooterService,
 };

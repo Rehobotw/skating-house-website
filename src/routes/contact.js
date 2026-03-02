@@ -1,9 +1,8 @@
 const express=require("express");
 const router=express.Router();
 const contactController=require("../controllers/contactController");
-const auth=require("../middleware/auth");
 
 router.get("/",contactController.get);
-router.put("/",auth, contactController.update);
+router.put("/", contactController.update);
 
 module.exports=router;

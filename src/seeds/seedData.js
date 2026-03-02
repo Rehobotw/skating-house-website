@@ -1,5 +1,3 @@
-// Central seed data definitions for the Skating House backend.
-
 const ContactInfo = require("../models/ContactInfo");
 
 const heroSeed = {

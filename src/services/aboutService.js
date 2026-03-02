@@ -1,10 +1,13 @@
 const aboutContent = require("../models/About");
 
-const getAllContent = () => aboutContent.find({});
+// About is a single, simple document with just `content`
+const getAllContent = () => aboutContent.findOne({});
 
-const updateSection = (title, content) =>
+// Update the single About document (create if missing)
+const updateSection = (content) =>
 	aboutContent.findOneAndUpdate(
-		{ content, updatedAt: Date.now() },
+		{},
+		{ content },
 		{ upsert: true, new: true }
 	);
 module.exports = {

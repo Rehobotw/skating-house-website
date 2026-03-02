@@ -1,13 +1,15 @@
 const heroContent = require("../models/Hero");
 
-const getAllContent = () => heroContent.find({});
+// Treat hero as a single content block
+const getAllContent = () => heroContent.findOne({});
 
-const updateSection = (title, content) =>
+const updateSection = (title,content) =>
 	heroContent.findOneAndUpdate(
-		{ title },
-		{ content, updatedAt: Date.now() },
+		{},
+		{ title,content, updatedAt: Date.now() },
 		{ upsert: true, new: true }
 	);
+
 module.exports = {
 	getAllContent,
 	updateSection,
