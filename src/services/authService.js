@@ -1,16 +1,22 @@
-const Admin = require("../models/Admin");
 const { signToken } = require("../utils/jwt");
 
+// Authenticate against a single hard-coded admin account
+// configured via environment variables (no DB lookups).
 const loginAdmin = async (email, password) => {
-	const admin = await Admin.findOne({ email });
-	if (!admin) return null;
+	const adminEmail = process.env.ADMIN_EMAIL;
+	const adminPassword = process.env.ADMIN_PASSWORD;
 
-	const ok = await admin.comparePassword(password);
-	if (!ok) return null;
+	if (!adminEmail || !adminPassword) {
+		throw new Error("Admin credentials are not configured on the server");
+	}
 
-	const token = signToken({ id: admin._id });
+	if (email !== adminEmail || password !== adminPassword) {
+		return null;
+	}
+
+	const token = signToken({ role: "admin" });
 	return { token };
 };
 
-module.exports = {loginAdmin,};
+module.exports = { loginAdmin };
 

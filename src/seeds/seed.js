@@ -1,6 +1,5 @@
 require("dotenv").config();
 const connectDB = require("../config/db");
-const Admin = require("../models/Admin");
 const hero = require("../models/Hero");
 const about= require("../models/About");
 const session=require("../models/Session");
@@ -15,7 +14,6 @@ const { heroSeed,aboutSeed,sessionSeed, pricingSeed,contactInfoSeed,footerSeed }
         await connectDB();
 
         await Promise.all([
-            Admin.deleteMany({}),
             hero.deleteMany({}),
             about.deleteMany({}),
             session.deleteMany({}),
@@ -24,11 +22,6 @@ const { heroSeed,aboutSeed,sessionSeed, pricingSeed,contactInfoSeed,footerSeed }
             ContactInfo.deleteMany({}),
             footer.deleteMany({}),
         ]);
-
-        await Admin.create({
-            email: process.env.ADMIN_EMAIL,
-            password: process.env.ADMIN_PASSWORD,
-        });
 
         await hero.create(heroSeed);
         await about.create(aboutSeed);
